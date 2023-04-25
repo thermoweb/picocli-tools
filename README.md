@@ -9,6 +9,15 @@ Some tools to help [picocli](https://picocli.info/) integration.
 
 ## Getting Started
 
+Add the following into your pom.xml : 
+```xml
+<dependency>
+    <groupId>org.thermoweb.picocli</groupId>
+    <artifactId>picocli-config-sqlite</artifactId>
+    <version>0.1</version>
+</dependency>
+```
+
 Add the `ConfigCommand` in the subcommands of your tool.
 Set the `ConfigHolder` that will stores the configuration.
 
@@ -24,7 +33,7 @@ mytool config myProperty myValue
 mytool config mySecretProperty mySecretValue --secret
 ```
 
-To use get configuration property in your tool, just use `Config.getProperty(myProperty)`.
+To use get configuration property in your code, just use `Config.getProperty("myProperty")`.
 
 ## Version History
 
