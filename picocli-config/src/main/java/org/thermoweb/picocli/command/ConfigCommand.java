@@ -3,6 +3,7 @@ package org.thermoweb.picocli.command;
 import lombok.extern.slf4j.Slf4j;
 import org.thermoweb.picocli.config.Config;
 import org.thermoweb.picocli.config.Property;
+import org.thermoweb.picocli.config.SimpleProperty;
 import picocli.CommandLine;
 
 import java.util.List;
@@ -23,20 +24,14 @@ public class ConfigCommand implements Runnable {
 
     @Override
     public void run() {
-        Config.setProperty(new SimpleProperty(propertyName, isSecret), propertyValue);
-        log.atInfo().log("property '{}' set to '{}'", propertyName, isSecret ? SECRET_PLACEHOLDER :propertyValue);
+        Config.setProperty(new SimpleProperty(propertyName, propertyValue, isSecret));
+        log.atInfo().log("property '{}' set to '{}'", propertyName, isSecret ? SECRET_PLACEHOLDER : propertyValue);
     }
 
     @CommandLine.Command(name = "list", description = "list all properties")
     public void list() {
         List<Property> properties = Config.list();
-        properties.forEach(p -> log.atInfo().log(String.format("%s : %s", p.id(), p.isSecret() ? SECRET_PLACEHOLDER :p.value())));
+        properties.forEach(p -> log.atInfo().log(String.format("%s : %s", p.id(), p.isSecret() ? SECRET_PLACEHOLDER : p.value())));
     }
 
-    record SimpleProperty(String id, boolean isSecret) implements Property {
-        @Override
-        public String value() {
-            return null;
-        }
-    }
 }

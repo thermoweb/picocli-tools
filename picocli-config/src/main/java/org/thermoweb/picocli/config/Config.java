@@ -18,12 +18,28 @@ public class Config {
         Config.configHolder = configHolder;
     }
 
-    public static void setProperty(Property property, String value) {
-        configHolder.setProperty(property, value);
+    public static void setProperty(String name, String value) {
+        setProperty(name, value, false);
     }
 
-    public static String getProperty(Property property) {
+    public static void setProperty(String name, String value, boolean isSecret) {
+        configHolder.setProperty(new SimpleProperty(name, value, isSecret));
+    }
+
+    public static void setProperty(Property property, String value) {
+        configHolder.setProperty(new SimpleProperty(property.id(), value, property.isSecret()));
+    }
+
+    public static void setProperty(Property property) {
+        configHolder.setProperty(property);
+    }
+
+    public static Property getProperty(Property property) {
         return configHolder.getProperty(property).orElseThrow();
+    }
+
+    public static String getPropertyAsString(Property property) {
+        return configHolder.getPropertyAsString(property).orElseThrow();
     }
 
     public static List<Property> list() {
@@ -34,13 +50,19 @@ public class Config {
         private static final String ERROR_MESSAGE = "no configuration holder set.";
 
         @Override
-        public void setProperty(Property property, String value) {
+        public void setProperty(Property property) {
             log.atError().log(ERROR_MESSAGE);
             throw new ConfigException(ERROR_MESSAGE);
         }
 
         @Override
-        public Optional<String> getProperty(Property property) {
+        public Optional<Property> getProperty(Property property) {
+            log.atWarn().log(ERROR_MESSAGE);
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<Property> getProperty(String propertyName) {
             log.atWarn().log(ERROR_MESSAGE);
             return Optional.empty();
         }

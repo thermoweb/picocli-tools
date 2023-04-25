@@ -25,13 +25,13 @@ public class SqliteConfigHolder implements ConfigHolder {
     }
 
     @Override
-    public void setProperty(Property property, String value) {
+    public void setProperty(Property property) {
         String sql = "INSERT OR REPLACE INTO properties(id, value, secret) VALUES (?,?,?);";
 
         try (Connection connection = SQLiteUtils.getConnection(databaseName);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, property.id().toUpperCase());
-            preparedStatement.setString(2, value);
+            preparedStatement.setString(2, property.value());
             preparedStatement.setBoolean(3, property.isSecret());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -40,21 +40,29 @@ public class SqliteConfigHolder implements ConfigHolder {
     }
 
     @Override
-    public Optional<String> getProperty(Property property) {
-        String sql = "SELECT value FROM properties WHERE id = ?";
+    public Optional<Property> getProperty(Property property) {
+        String sql = "SELECT id, value, secret FROM properties WHERE id = ?";
         try (Connection connection = SQLiteUtils.getConnection(databaseName);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, property.id());
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                return Optional.of(resultSet.getString("value"));
+                return Optional.of(new SimpleProperty(
+                        resultSet.getString("id"),
+                        resultSet.getString("value"),
+                        resultSet.getBoolean("secret")));
             }
 
         } catch (SQLException e) {
             throw new ConfigException(e);
         }
         return Optional.empty();
+    }
+
+    @Override
+    public Optional<Property> getProperty(String propertyName) {
+        return getProperty(new SimpleProperty(propertyName));
     }
 
     @Override
@@ -66,7 +74,7 @@ public class SqliteConfigHolder implements ConfigHolder {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                properties.add(new SqliteProperty(resultSet.getString("id"), resultSet.getString("value"), resultSet.getBoolean("secret")));
+                properties.add(new SimpleProperty(resultSet.getString("id"), resultSet.getString("value"), resultSet.getBoolean("secret")));
             }
             return properties;
         } catch (SQLException e) {
@@ -110,8 +118,5 @@ public class SqliteConfigHolder implements ConfigHolder {
         } catch (SQLException e) {
             throw new ConfigException(e);
         }
-    }
-
-    private record SqliteProperty(String id, String value, boolean isSecret) implements Property {
     }
 }
