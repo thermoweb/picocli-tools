@@ -6,7 +6,7 @@
 
     <groupId>org.thermoweb.picocli</groupId>
     <artifactId>picocli-tools</artifactId>
-    <version>0.1</version>
+    <version>0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
         <module>picocli-config</module>
@@ -26,15 +26,14 @@
         <developer>
             <name>Romain CHAUVEAU</name>
             <email>romain.chauveau@protonmail.com</email>
+            <organization>thermoweb</organization>
         </developer>
     </developers>
 
-
     <scm>
-        <url>https://github.com/thermoweb/picocli-tools</url>
-        <connection>scm:git:https://github.com/thermoweb/picocli-tools</connection>
-        <developerConnection>scm:git:https://github.com/thermoweb/picocli-tools</developerConnection>
-        <tag>HEAD</tag>
+        <url>https://github.com/thermoweb/gitools/tree/main/</url>
+        <connection>scm:git:https://github.com/thermoweb/gitools.git</connection>
+        <developerConnection>scm:git:https://github.com/thermoweb/gitools.git</developerConnection>
     </scm>
 
     <properties>
