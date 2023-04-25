@@ -8,11 +8,16 @@ import picocli.CommandLine;
 
 import java.util.List;
 
+/**
+ * Command class to add to enable the config command into your tool. Simply add it into your subcommands.
+ */
 @Slf4j
 @CommandLine.Command(name = "config")
 public class ConfigCommand implements Runnable {
 
+    /** This is the string value that secrect properties will be replaced with. */
     private static final String SECRET_PLACEHOLDER = "<secret>";
+
     @CommandLine.Parameters(index = "0", arity = "0..1")
     private String propertyName;
 
