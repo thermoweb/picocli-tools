@@ -6,7 +6,7 @@
 
     <groupId>org.thermoweb.picocli</groupId>
     <artifactId>picocli-tools</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.2</version>
     <packaging>pom</packaging>
     <modules>
         <module>picocli-config</module>
