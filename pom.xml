@@ -31,9 +31,9 @@
     </developers>
 
     <scm>
-        <url>https://github.com/thermoweb/gitools/tree/main/</url>
-        <connection>scm:git:https://github.com/thermoweb/gitools.git</connection>
-        <developerConnection>scm:git:https://github.com/thermoweb/gitools.git</developerConnection>
+        <url>https://github.com/thermoweb/picocli-tools/tree/master/</url>
+        <connection>scm:git:https://github.com/thermoweb/picocli-tools.git</connection>
+        <developerConnection>scm:git:https://github.com/thermoweb/picocli-tools.git</developerConnection>
     </scm>
 
     <properties>
