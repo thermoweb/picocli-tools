@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.thermoweb.picocli</groupId>
         <artifactId>picocli-tools</artifactId>
-        <version>0.4</version>
+        <version>0.5-SNAPSHOT</version>
     </parent>
 
     <artifactId>picocli-config-sqlite</artifactId>
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>org.thermoweb.picocli</groupId>
             <artifactId>picocli-config</artifactId>
-            <version>0.4</version>
+            <version>0.5-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
