@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.thermoweb.picocli</groupId>
         <artifactId>picocli-tools</artifactId>
-        <version>0.4-SNAPSHOT</version>
+        <version>0.4</version>
     </parent>
 
     <artifactId>picocli-config</artifactId>
