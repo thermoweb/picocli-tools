@@ -4,7 +4,7 @@
 
     <groupId>org.thermoweb.picocli</groupId>
     <artifactId>picocli-tools</artifactId>
-    <version>0.3</version>
+    <version>0.4-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
         <module>picocli-config</module>
@@ -32,7 +32,7 @@
         <url>https://github.com/thermoweb/picocli-tools/tree/master/</url>
         <connection>scm:git:git@github.com:thermoweb/picocli-tools.git</connection>
         <developerConnection>scm:git:git@github.com:thermoweb/picocli-tools.git</developerConnection>
-      <tag>picocli-tools-0.3</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <properties>
