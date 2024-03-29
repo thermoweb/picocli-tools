@@ -15,7 +15,7 @@ import java.util.List;
 @CommandLine.Command(name = "config")
 public class ConfigCommand implements Runnable {
 
-    /** This is the string value that secrect properties will be replaced with. */
+    /** This is the string value that secret properties will be replaced with. */
     private static final String SECRET_PLACEHOLDER = "<secret>";
 
     @CommandLine.Parameters(index = "0", arity = "0..1")
@@ -26,6 +26,10 @@ public class ConfigCommand implements Runnable {
 
     @CommandLine.Option(names = "--secret")
     private boolean isSecret;
+
+    public ConfigCommand() {
+        log.atDebug().log();
+    }
 
     @Override
     public void run() {

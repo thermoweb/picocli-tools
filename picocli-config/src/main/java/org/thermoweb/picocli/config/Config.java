@@ -38,6 +38,10 @@ public class Config {
         return configHolder.getProperty(property).orElseThrow();
     }
 
+    public static Optional<Property> get(Property property) {
+        return configHolder.getProperty(property);
+    }
+
     public static String getPropertyAsString(Property property) {
         return configHolder.getPropertyAsString(property).orElseThrow();
     }
